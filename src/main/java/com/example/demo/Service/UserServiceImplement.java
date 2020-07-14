@@ -21,6 +21,6 @@ public class UserServiceImplement implements UserDetailsService {
 
     @Autowired
     public UserServiceImplement(UserRepository userRepository) {
-        this.userRepository = userRepository;
+        this.userRepository = userRepositor
     }
 }
