@@ -41,7 +41,21 @@ public class Products {
     @OneToMany(mappedBy = "products")
     private Set<Order> order;
 
+    public Set<Coment> getComent() {
+        return coment;
+    }
 
+    public void setComent(Set<Coment> coment) {
+        this.coment = coment;
+    }
+
+    public Set<Order> getOrder() {
+        return order;
+    }
+
+    public void setOrder(Set<Order> order) {
+        this.order = order;
+    }
 
     public Set<Users> getUser() {
         return user;

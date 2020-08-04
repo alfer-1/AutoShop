@@ -1,8 +1,13 @@
 package com.example.demo.model;
 
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
+@Getter
+@Setter
 @Entity
 @Table
 public class Coment {
@@ -14,11 +19,6 @@ public class Coment {
     @Column
     private String valve;
 
-    @Column
-    private Integer user_id;
-
-    @Column
-    private Integer product_id;
 
     @Column
     private String data;
@@ -37,43 +37,5 @@ public class Coment {
     public Coment() {
     }
 
-    public Integer getId() {
-        return id;
-    }
 
-    public String getValve() {
-        return valve;
-    }
-
-    public Integer getUser_id() {
-        return user_id;
-    }
-
-    public Integer getProduct_id() {
-        return product_id;
-    }
-
-    public String getData() {
-        return data;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setValve(String valve) {
-        this.valve = valve;
-    }
-
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
-    }
-
-    public void setProduct_id(Integer product_id) {
-        this.product_id = product_id;
-    }
-
-    public void setData(String data) {
-        this.data = data;
-    }
 }

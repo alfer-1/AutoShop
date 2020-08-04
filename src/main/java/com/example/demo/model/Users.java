@@ -12,6 +12,7 @@ import java.util.Set;
 @Table
 public class Users implements UserDetails {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Integer id;
 
@@ -30,8 +31,7 @@ public class Users implements UserDetails {
     @Column
     private String data_of_create;
 
-    @Column
-    private String rol;
+
 
     @Column
     private String phone;
@@ -41,7 +41,7 @@ public class Users implements UserDetails {
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = { @JoinColumn(name = "product_id")})
 
-        private Set<Products> products = new HashSet<>();
+            private Set<Products> products = new HashSet<>();
 
 
 
@@ -52,6 +52,35 @@ public class Users implements UserDetails {
     @OneToMany(mappedBy = "users")
     private Set<Order> order;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_x_role",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = { @JoinColumn(name = "role_id")})
+    private Set<Role> roles;
+
+    public Set<Coment> getComent() {
+        return coment;
+    }
+
+    public void setComent(Set<Coment> coment) {
+        this.coment = coment;
+    }
+
+    public Set<Order> getOrder() {
+        return order;
+    }
+
+    public void setOrder(Set<Order> order) {
+        this.order = order;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 
     public Integer getId() {
         return id;
@@ -110,9 +139,7 @@ public class Users implements UserDetails {
         return data_of_create;
     }
 
-    public String getRol() {
-        return rol;
-    }
+
 
     public String getPhone() {
         return phone;
@@ -142,9 +169,7 @@ public class Users implements UserDetails {
         this.data_of_create = data_of_create;
     }
 
-    public void setRol(String rol) {
-        this.rol = rol;
-    }
+
 
     public void setPhone(String phone) {
         this.phone = phone;

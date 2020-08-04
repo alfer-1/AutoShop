@@ -1,10 +1,193 @@
 <!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>AutoShop</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </head>
+
+    <style>
+        body {
+            background: #D3D3D3;
+            /* Меняется фон экрана, /
+                   }
+
+                   #wrapper{ /* Оболочка страницы сайта */
+            width: 1800px; /* Меняется ширина страницы */
+            margin: 0 auto;
+            background: #f2f3f4; /* Меняется задний фон страницы */
+        }
+
+        /* Шапка сайта */
+
+        #header {
+            position: relative; /* Задаём блоку относительное позиционирование для того, чтобы затем размещать, в нём другие элементы и позиционировать относительно его границ поверх фоновой картинки и заголовка */
+            height: 250px; /* Высота шапки */
+            background-color: #ffffff; /* Фон шапки */
+            margin-bottom: 5px; /* Нижний отступ шапки от остального контента */
+            border-radius: 5px; /* Закругляются углы блока */
+            box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 3px; /* Тень. Визуально приподнимает блок над оболочкой */
+        }
+
+        img { /* Фоновая картинка в шапке */
+            float: left; /* Разрешаем наплывание других элементов на картинку */
+            margin: -40px 0 0 0;
+        }
+
+        /* Размещаем картинку в блоке header. 1-я и 3-я цифры - двигаем вверх-вниз, 2-я и 4-я цифры - двигаем вправо-влево */
+        h1 { /* Заголовок сайта */
+            margin: 0 0 10px 40px; /* Заголовок двигается верх-вправо-вниз-влево. */
+            color: #070608; /* Цвет заголовка */
+        }
+
+        .nomer { /*Подзаголовок (номер телефона)*/
+            position: absolute; /* Позиционируем абсолютно подзаголовок, относительно границ блока header. Также можно разместить в шапке сайта ещё другие картинки и абзацы поверх фоновой картинки и заголовка */
+            top: 5px; /* Двигается вверх-вниз */
+            left: 680px; /* Двигается вправо-влево */
+            font-size: 25px; /* Размер букв подзаголовка */
+            font-style: italic; /* Курсив */
+            font-weight: bold; /* Жирный */
+            color: #070608; /* Цвет букв подзаголовка */
+        }
+
+        /* Сайдбар (колонка справа) */
+
+        #sidebar { /* Блок сайдбара */
+            background-color: #ffffff; /* Фон блока */
+            width: 180px; /* Ширина блока */
+            padding: 10px; /* Отступ текста от краёв */
+            float: right; /* Размещаем блок справа от других элементов, наплывание или обтекание справа). Если делать сайдбар слева, то значение right меняем на left */
+            border-radius: 5px; /* Закругляем углы блока */
+            box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 3px; /* Задаём блоку тень */
+        }
+
+        .marcer { /* Галочки маркеры меню */
+            float: left; /* Размещаем слева от текста */
+            margin: 5px 5px 0 0; /* Двигаются вверх-вправо-вниз-влево */
+        }
+
+        /* Контент (статья) */
+
+        #content { /* Блок контента */
+            margin-bottom: 5px; /* Отступ блока статьи от блока подвала */
+            width: 950px; /* Ширина статьи */
+            padding: 10px; /* Отступ текста от краёв блока */
+            background: #ffffff; /* Фон статьи */
+            border-radius: 5px;
+            box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 3px;
+        }
+
+        .left { /* Картинка в тексте слева */
+            float: left;
+            margin: 30px 7px 7px 7px;
+        }
+
+        .right { /* Картинка в тексте справа */
+            float: right;
+            margin: 7px 0 7px 7px;
+        }
+
+        /* Подвал */
+
+        #footer { /* Блок подвала */
+            height: 80px; /* Высота блока подвала */
+            background-color: #ffffff; /* Фон блока подвала */
+            margin-bottom: 10px; /* Отступ снизу */
+            border-radius: 5px; /* Закруглённые углы */
+            box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 3px; /* Тень блока */
+        }
+
+        .clear { /* Запрет наплывания. Устанавливается для того, чтобы блок контента, при заполнении текстом и изображениями не наплывал на подвал */
+            clear: both;
+        }
+
+        .fon { /* Номер телефона */
+            float: left; /* Разрешаем другим элементам обтекать абзац справа */
+            margin: 20px 0 0 20px;
+        }
+
+        .fax { /* Номер факса */
+            float: left;
+            margin: 20px 0 0 60px;
+        }
+
+        .mail { /* Адрес E-mail */
+            float: left;
+            margin: 20px 0 0 60px;
+        }
+    </style>
 <body>
-Helloworld
+
+
+
+
+
+    <form autocomplete="off" th:action="@{/registration}" method="get" class="m-t" role="form"
+          data-toggle="validator">
+        <button>REGISTRATION</button>
+    </form>
+    <form autocomplete="off" th:action="@{/login}" method="get" class="m-t" role="form"
+          data-toggle="validator">
+        <button>LOGIN</button>
+    </form>
+
+
+
+
+
+
+
+<div id="wrapper"> <!--Оболочка страницы-->
+    <!--Шапка сайта-->
+    <div id="header">
+        <!--Заголовок сайта-->
+        <h1>Онлайн магазин автозапчастей</h1>
+        <!--Описание (телефон)-->
+        <p class="nomer">234-49-50 <br> +375(29) 123 45 67</p>
+        <!--Фоновая картинка в шапке сайта-->
+        <img src="http://trueimages.ru/img/26/0a/acc601f5.png">
+    </div>
+    <!--Сайдбар-->
+    <div id="sidebar">
+        <!--меню-->
+        <h3>О нас</h3>
+        <!--Картинки маркеров меню (галочки)-->
+        <p>Наши сотрудники</p>
+        <p>Контакты</p>
+        <p>Обратная связь</p>
+        <!--Прямая синяя линия-->
+        <hr width="100" color="#037FFC" size="5">
+        <!--Общая информация в сайдбаре-->
+        <h3>Другая информация</h3>
+    </div>
+    <!--Основной контент (статья)-->
+    <div id="content">
+        <!--Заголовок статьи-->
+        <h3>Наша работа</h3>
+        <!--Текст статьи-->
+        <p>Здравствуйте уважаемые клиенты</p>
+        <p> Сдесь вы можете прееобрести запчасти на ваш автомобиль</p>
+        <img class="right" src="http://trueimages.ru/img/67/2f/f7a601f5.png">
+        <p></p>
+        <p></p>
+        <p></p>
+
+    </div>
+    <!--Запрет наплывания-->
+    <div class="clear"></div>
+    <!--Подвал-->
+    <div id="footer">
+        <p class="fon"><strong>Телефон:<br> +375(29) 123 45 67</strong></p>
+        <p class="fax"><strong>Факс:<br> 8017 1234567</strong></p>
+        <p class="mail"><strong>E-mail<br>auto-parts@mail.ru</strong></p>
+
+    </div>
+</div>
+
 </body>
 </html>

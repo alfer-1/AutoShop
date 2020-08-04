@@ -11,11 +11,6 @@ public class Order {
     @Column
     private Integer id;
 
-    @Column
-    private Integer product_id;
-
-    @Column
-    private Integer user_id;
 
     @Column
     private Integer quantity;
@@ -41,12 +36,21 @@ public class Order {
         return id;
     }
 
-    public Integer getProduct_id() {
-        return product_id;
+
+    public Products getProducts() {
+        return products;
     }
 
-    public Integer getUser_id() {
-        return user_id;
+    public void setProducts(Products products) {
+        this.products = products;
+    }
+
+    public Users getUsers() {
+        return users;
+    }
+
+    public void setUsers(Users users) {
+        this.users = users;
     }
 
     public Integer getQuantity() {
@@ -61,13 +65,9 @@ public class Order {
         this.id = id;
     }
 
-    public void setProduct_id(Integer product_id) {
-        this.product_id = product_id;
-    }
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
-    }
+
+
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
