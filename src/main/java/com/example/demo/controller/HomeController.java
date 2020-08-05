@@ -6,6 +6,7 @@ import com.example.demo.Service.UserServiceImplement;
 import com.example.demo.dto.SearchByNameDto;
 import com.example.demo.dto.UserDto;
 import com.example.demo.model.Coment;
+import com.example.demo.model.Products;
 import com.example.demo.repository.ProductRepository;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,7 @@ public class HomeController {
     @PostMapping(value = "/login")
     public ModelAndView postLogin(ModelAndView view, UserDto userDto) throws Exception {
         userServiceImplement.login(userDto);
+        view.addObject("searchByNameDto", new SearchByNameDto());
         view.setViewName("homeLogin");
         return view;
     }
@@ -68,21 +70,25 @@ public class HomeController {
     @GetMapping(value = "/homeLogin")
     public ModelAndView getRequestForm(ModelAndView view) {
 
+        view.addObject("searchByNameDto", new SearchByNameDto());
         view.setViewName("homeLogin");
         return view;
     }
 
     @PostMapping(value = "/homeLogin")
     public ModelAndView postRegistration(ModelAndView view, SearchByNameDto searchByNameDto) throws Exception {
-        productService.findByProductName(searchByNameDto);
+        //говорим о том,что на html форме будет переменная products инициализированная выражением productService.findByProductName(searchByNameDto
+        view.addObject("products", productService.findByProductName(searchByNameDto));
+        view.addObject("product", new Products());
         view.setViewName("search");
         return view;
     }
 
-    @GetMapping("/search")
-    public String search() {
+    @PostMapping("/search")
+    public ModelAndView orderPost(ModelAndView view, Products product) throws Exception{
         productRepository.findByName("oil");
-        return "search";
+        view.setViewName("search");
+        return view;
     }
 
 }
